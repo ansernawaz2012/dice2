@@ -12,8 +12,9 @@ let playerOneTotalScore = 0;
 let playerTwoTotalScore = 0;
 let gameWon = false;
 
-let playerOneActive =  false;
-// let playerTwoActive = false;
+let playerOneActive =  true;
+document.getElementById('player-1-section').classList.add('activePlayer');
+
 
 
 const newGame = () => {
@@ -27,7 +28,7 @@ const newGame = () => {
     playerTwoTotalScore = 0;
     document.getElementById('player-1-section').classList.add('activePlayer');
     document.getElementById('player-2-section').classList.remove('activePlayer');
-    document.getElementById('score-1').innerHTML = playerTwoTotalScore;
+    document.getElementById('score-1').textContent = playerTwoTotalScore;
 
     rollDice();
 
@@ -54,27 +55,27 @@ const holdScore = () => {
 }
 
 const switchPlayer = (hold) => {
-   
+
    console.log(playerOneActive);
    console.log(hold);
     if(playerOneActive && hold) {
-            
+
 
             playerOneActive = false;
             playerOneCurrentScore = 0;
 
-            document.getElementById('current-score-0').innerHTML = playerOneCurrentScore;
+            document.getElementById('current-score-0').textContent = playerOneCurrentScore;
             document.getElementById('player-1-section').classList.toggle('activePlayer');
             document.getElementById('player-2-section').classList.add('activePlayer');
 
-            
-    
+
+
         } else if((playerOneActive == true) && (hold == false)) {
         playerOneActive = false;
             playerOneCurrentScore = 0;
             playerOneTotalScore = 0;
-            document.getElementById('current-score-0').innerHTML = playerOneCurrentScore;
-            document.getElementById('score-0').innerHTML = playerOneTotalScore;
+            document.getElementById('current-score-0').textContent = playerOneCurrentScore;
+            document.getElementById('score-0').textContent = playerOneTotalScore;
 
             document.getElementById('player-1-section').classList.remove('activePlayer');
             document.getElementById('player-2-section').classList.add('activePlayer');
@@ -82,7 +83,7 @@ const switchPlayer = (hold) => {
     }else if((playerOneActive == false) && (hold == true)) {
         playerOneActive = true;
             playerTwoCurrentScore = 0;
-            document.getElementById('current-score-1').innerHTML = playerTwoCurrentScore;
+            document.getElementById('current-score-1').textContent = playerTwoCurrentScore;
             document.getElementById('player-1-section').classList.add('activePlayer');
             document.getElementById('player-2-section').classList.remove('activePlayer');
 
@@ -90,14 +91,14 @@ const switchPlayer = (hold) => {
         playerOneActive = true;
             playerTwoCurrentScore = 0;
             playerTwoTotalScore = 0;
-            document.getElementById('current-score-1').innerHTML = playerTwoCurrentScore;
-            document.getElementById('score-1').innerHTML = playerTwoTotalScore;
+            document.getElementById('current-score-1').textContent = playerTwoCurrentScore;
+            document.getElementById('score-1').textContent = playerTwoTotalScore;
 
             document.getElementById('player-1-section').classList.add('activePlayer');
             document.getElementById('player-2-section').classList.remove('activePlayer');
 
 
-    } 
+    }
 
 }
 
@@ -106,15 +107,15 @@ const updateScore = (diceScore) => {
     if(playerOneActive == true) {
         playerOneCurrentScore += diceScore;
         playerOneTotalScore += diceScore;
-        document.getElementById('current-score-0').innerHTML = playerOneCurrentScore;
-        document.getElementById('score-0').innerHTML = playerOneTotalScore;
+        document.getElementById('current-score-0').textContent = playerOneCurrentScore;
+        document.getElementById('score-0').textContent = playerOneTotalScore;
         checkScore();
     } else {
         playerTwoCurrentScore += diceScore;
         playerTwoTotalScore += diceScore;
-        document.getElementById('current-score-1').innerHTML = playerTwoCurrentScore;
+        document.getElementById('current-score-1').textContent = playerTwoCurrentScore;
 
-        document.getElementById('score-1').innerHTML = playerTwoTotalScore;
+        document.getElementById('score-1').textContent = playerTwoTotalScore;
         checkScore();
 
     }
@@ -122,25 +123,25 @@ const updateScore = (diceScore) => {
 }
 
 const checkScore = () => {
-    
+
     if((playerOneActive == true) && (playerOneTotalScore>=20)) { //if the game is won, hide roll button and display message with restart button
-    
+
         gameWon = true;
-        
+
         document.getElementById('roll').style.visibility = 'hidden';
         document.getElementById('reset').style.visibility = 'visible';
 
-        document.getElementById('score-0').innerHTML = `You have won! Your score is ${playerOneTotalScore}`;
-        
+        document.getElementById('score-0').textContent = `Winner!`;
+
     }else if((playerOneActive == false) && (playerTwoTotalScore>=20)) { //if the game is won, hide roll button and display message with restart button
-    
+
         gameWon = true;
-        
+
         document.getElementById('roll').style.visibility = 'hidden';
         document.getElementById('reset').style.visibility = 'visible';
 
-        document.getElementById('score-1').innerHTML = `You have won! Your score is ${playerTwoTotalScore}`;
-        
+        document.getElementById('score-1').textContent = `Winner!`;
+
     }
 
 
