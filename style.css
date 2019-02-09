@@ -9,7 +9,7 @@ body {
     align-items: center;
     height:100vh;
     background-image: linear-gradient(to right, rgb(223, 84, 84) , orange);
-    
+
 }
 
 
@@ -37,7 +37,7 @@ body {
     width:15rem;
     height: 30rem;
     background-color: white;
-    
+
 }
 
 .player-2-section {
@@ -77,11 +77,18 @@ body {
 
 .player-name {
     font-size: 2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 
 }
 
 .player-score-1, .player-score-2 {
+
     font-size: 2rem;
+
 }
 
 .ext {
