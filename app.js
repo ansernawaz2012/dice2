@@ -21,8 +21,7 @@ const newGame = () => {
     document.getElementById('reset').style.visibility = 'hidden';
     document.getElementById('roll').style.visibility = 'visible';
     playerOneActive = true;
-    // playerTwoActive = false;
-    playerOneCurrentScore = 0;
+    playerOneCurrentScore = 0;   //reset scores for new game
     playerTwoCurrentScore = 0;
     playerOneTotalScore = 0;
     playerTwoTotalScore = 0;
@@ -30,6 +29,7 @@ const newGame = () => {
     document.getElementById('player-2-section').classList.remove('activePlayer');
     document.getElementById('score-1').textContent = playerTwoTotalScore;
 
+    
     rollDice();
 
 }
@@ -40,7 +40,7 @@ const rollDice = () => {
     document.getElementById('img').src =  imageArray[currentRoll];
 
     if (currentRoll == 1) {
-         let hold = false;
+         let hold = false;  //end turn if 1 is rolled
         switchPlayer(hold);
     }else {
         updateScore(currentRoll);
@@ -51,7 +51,12 @@ const rollDice = () => {
 const holdScore = () => {
 
     let hold = true;
+
+    if ((playerOneTotalScore >= 20) || (playerTwoTotalScore >= 20)) {
+        checkScore(hold);
+    } else {
     switchPlayer(hold);
+    }
 }
 
 const switchPlayer = (hold) => {
@@ -122,9 +127,9 @@ const updateScore = (diceScore) => {
 
 }
 
-const checkScore = () => {
+const checkScore = (hold) => {
 
-    if((playerOneActive == true) && (playerOneTotalScore>=20)) { //if the game is won, hide roll button and display message with restart button
+    if((playerOneActive == true) && (playerOneTotalScore>=20) && (hold == true)) { //if the game is won, hide roll button and display message with restart button
 
         gameWon = true;
 
@@ -133,7 +138,7 @@ const checkScore = () => {
 
         document.getElementById('score-0').textContent = `Winner!`;
 
-    }else if((playerOneActive == false) && (playerTwoTotalScore>=20)) { //if the game is won, hide roll button and display message with restart button
+    }else if((playerOneActive == false) && (playerTwoTotalScore>=20) && (hold == true)) { //if the game is won, hide roll button and display message with restart button
 
         gameWon = true;
 
